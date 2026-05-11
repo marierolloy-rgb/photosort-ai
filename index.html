@@ -3,366 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PhotoSort AI | L'IA qui trie vos photos</title>
+    <title>PhotoSort AI | L'IA qui trie vos photos en local</title>
     <!-- Polices Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* --- Variables CSS --- */
-        :root {
-            --vert-emeraude: #2E8B57;
-            --vert-mousse: #5A9C6E;
-            --gris-clair: #E8E8E8;
-            --noir: #2C2C2C;
-            --blanc-casse: #F5F5F5;
-            --blanc: #FFFFFF;
-        }
-
-        /* --- Style Global --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body {
-            background-color: var(--blanc-casse);
-            color: var(--noir);
-            line-height: 1.6;
-        }
-
-        /* --- Header --- */
-        header {
-            background: linear-gradient(135deg, var(--vert-emeraude), var(--vert-mousse));
-            color: var(--blanc);
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .logo {
-            font-family: 'Lora', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-
-        .slogan {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: var(--noir);
-            color: var(--blanc);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            margin: 0.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background-color: var(--vert-emeraude);
-            transform: translateY(-3px);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            border: 2px solid var(--blanc);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            padding: 3rem 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-family: 'Lora', serif;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2rem;
-        }
-
-        /* --- Sections --- */
-        section {
-            padding: 4rem 0;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            font-family: 'Lora', serif;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--vert-emeraude);
-        }
-
-        /* --- Fonctionnalités --- */
-        .features {
-            background-color: var(--blanc-casse);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background-color: var(--blanc);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-card i {
-            font-size: 2.5rem;
-            color: var(--vert-emeraude);
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-family: 'Lora', serif;
-            margin-bottom: 1rem;
-        }
-
-        /* --- Comment ça marche --- */
-        .how-it-works {
-            background-color: var(--gris-clair);
-        }
-
-        .steps {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 2rem;
-        }
-
-        .step {
-            flex: 1;
-            min-width: 300px;
-            background-color: var(--blanc);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        .step::before {
-            content: attr(data-step);
-            background-color: var(--vert-emeraude);
-            color: var(--blanc);
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            font-weight: bold;
-        }
-
-        .step h3 {
-            font-family: 'Lora', serif;
-            margin-top: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        /* --- Témoignages --- */
-        .testimonials {
-            background-color: var(--blanc);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            padding: 2rem;
-            border-left: 5px solid var(--vert-emeraude);
-            background-color: var(--blanc-casse);
-            border-radius: 5px;
-        }
-
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-card .author {
-            font-weight: 700;
-            color: var(--vert-emeraude);
-        }
-
-        /* --- Tarifs --- */
-        .pricing {
-            background-color: var(--blanc-casse);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background-color: var(--blanc);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .pricing-card h3 {
-            font-family: 'Lora', serif;
-            margin-bottom: 1rem;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--vert-emeraude);
-            margin-bottom: 1rem;
-        }
-
-        .pricing-card ul {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-card li {
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-card li::before {
-            content: "✓";
-            color: var(--vert-emeraude);
-            margin-right: 0.5rem;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: var(--noir);
-            color: var(--gris-clair);
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: var(--gris-clair);
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            color: var(--vert-emeraude);
-        }
-
-        .social-icons {
-            margin-bottom: 1rem;
-        }
-
-        .social-icons a {
-            color: var(--gris-clair);
-            font-size: 1.5rem;
-            margin: 0 0.5rem;
-            text-decoration: none;
-        }
-
-        .social-icons a:hover {
-            color: var(--vert-emeraude);
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .steps {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="logo">PhotoSort AI</div>
-            <p class="slogan">L'IA qui trie vos photos à votre place, en local et en toute confidentialité.</p>
-            <a href="#demo" class="btn">Essayer l'outil maintenant</a>
-            <a href="#features" class="btn btn-secondary">Découvrir les fonctionnalités</a>
+            <div class="logo">
+                <i class="fas fa-leaf" style="color: var(--vert-emeraude); margin-right: 10px;"></i>
+                PhotoSort AI
+            </div>
+            <nav>
+                <a href="#features">Fonctionnalités</a>
+                <a href="#how-it-works">Comment ça marche ?</a>
+                <a href="#testimonials">Témoignages</a>
+                <a href="#pricing">Tarifs</a>
+                <a href="#demo" class="btn-header">Essayer gratuitement</a>
+            </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Triez vos photos en un clic avec l’IA</h1>
-            <p>Un outil intelligent qui classe vos photos selon vos critères pour créer des albums parfaits, <strong>sans jamais quitter votre ordinateur</strong>.</p>
-            <a href="#demo" class="btn">Essayer gratuitement</a>
-            <a href="#how-it-works" class="btn btn-secondary">Comment ça marche ?</a>
+            <div class="hero-content">
+                <h1>Triez vos photos <span style="color: var(--vert-emeraude);">intelligemment</span> avec l’IA</h1>
+                <p>Finis le tri manuel ! PhotoSort AI classe automatiquement vos photos en <strong>Belles, Moyennes ou À supprimer</strong>, <strong>100% en local</strong> et sans risque pour vos données.</p>
+                <div class="hero-buttons">
+                    <a href="#demo" class="btn btn-primary">Essayer gratuitement →</a>
+                    <a href="#how-it-works" class="btn btn-secondary">Découvrir comment ça marche</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/avant-apres.jpg" alt="Avant/Après : Dossier désordonné vs. dossier trié">
+            </div>
         </div>
     </section>
 
     <!-- Fonctionnalités -->
     <section id="features" class="features">
         <div class="container">
-            <h2 class="section-title">✨ Pourquoi choisir PhotoSort AI ?</h2>
+            <div class="section-header">
+                <h2>✨ Pourquoi choisir PhotoSort AI ?</h2>
+                <p>Un outil conçu pour <strong>simplifier votre vie</strong> et vous faire gagner un temps précieux.</p>
+            </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <i class="fas fa-robot"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
                     <h3>Tri Automatique par IA</h3>
-                    <p>Notre algorithme analyse la netteté, la luminosité et les visages pour classer vos photos en 3 catégories : Belles, Moyennes, À supprimer.</p>
+                    <p>Notre algorithme analyse la netteté, la luminosité, les visages et les sourires pour un classement précis en 3 catégories.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-palette"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
                     <h3>100% Personnalisable</h3>
-                    <p>Définissez vos propres critères (ex: "photos de paysages", "portraits souriants") pour un tri sur mesure.</p>
+                    <p>Définissez vos propres critères (ex: "photos de paysages", "portraits souriants") ou utilisez nos préréglages.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-lock"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
                     <h3>Confidentialité Totale</h3>
-                    <p>Vos photos <strong>ne quittent jamais votre ordinateur</strong>. Pas de cloud, pas de téléchargement, 100% local et sécurisé.</p>
+                    <p>Vos photos restent sur votre PC. Aucun téléchargement, aucun cloud externe – juste vous et votre ordinateur.</p>
                 </div>
                 <div class="feature-card">
-                    <i class="fas fa-cloud"></i>
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
                     <h3>Compatible avec Votre Cloud</h3>
                     <p>Utilisez RaiDrive ou NetDrive pour trier directement vos photos stockées sur Google Drive, Dropbox, Leviia, etc.</p>
                 </div>
@@ -370,93 +87,155 @@
         </div>
     </section>
 
+    <!-- Illustration avant/après -->
+    <section class="illustration">
+        <div class="container">
+            <img src="images/avant-apres.jpg" alt="Exemple de tri : Avant et Après">
+        </div>
+    </section>
+
     <!-- Comment ça marche ? -->
     <section id="how-it-works" class="how-it-works">
         <div class="container">
-            <h2 class="section-title">🔄 Comment ça marche ?</h2>
+            <div class="section-header">
+                <h2>🔄 Comment ça marche ?</h2>
+                <p>En 3 étapes simples, vos photos sont triées et prêtes à être utilisées.</p>
+            </div>
             <div class="steps">
-                <div class="step" data-step="1">
-                    <h3>Montez votre cloud</h3>
-                    <p>Utilisez RaiDrive ou NetDrive pour connecter votre espace de stockage (Google Drive, Leviia, etc.) comme un disque local.</p>
-                    <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: var(--vert-emeraude); margin-top: 1rem;"></i>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Montez votre cloud</h3>
+                        <p>Installez <a href="https://www.raidrive.com/" target="_blank">RaiDrive</a> ou <a href="https://www.netdrive.net/" target="_blank">NetDrive</a> pour connecter votre espace de stockage comme un disque local.</p>
+                    </div>
+                    <div class="step-image">
+                        <img src="images/capture-raidrive.png" alt="Capture d'écran de RaiDrive">
+                    </div>
                 </div>
-                <div class="step" data-step="2">
-                    <h3>Lancez l’analyse</h3>
-                    <p>Sélectionnez votre dossier de photos dans PhotoSort AI et lancez le tri. Notre IA fait le reste !</p>
-                    <i class="fas fa-play-circle" style="font-size: 2rem; color: var(--vert-emeraude); margin-top: 1rem;"></i>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Lancez l’analyse</h3>
+                        <p>Sélectionnez votre dossier de photos dans PhotoSort AI et cliquez sur "Lancer le tri". Notre IA fait le reste en quelques minutes !</p>
+                    </div>
+                    <div class="step-image">
+                        <!-- Ajoute une capture de ton interface Gradio ici -->
+                        <img src="images/interface-photosort.png" alt="Interface de PhotoSort AI">
+                    </div>
                 </div>
-                <div class="step" data-step="3">
-                    <h3>Récupérez vos albums</h3>
-                    <p>Vos photos sont automatiquement classées dans des dossiers : Belles/, Moyennes/, À_supprimer/.</p>
-                    <i class="fas fa-folder-open" style="font-size: 2rem; color: var(--vert-emeraude); margin-top: 1rem;"></i>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Récupérez vos albums</h3>
+                        <p>Vos photos sont automatiquement classées dans des dossiers : Belles/, Moyennes/, À_supprimer/. Prêt à être utilisé !</p>
+                    </div>
+                    <div class="step-image">
+                        <!-- Ajoute une illustration des dossiers triés -->
+                        <img src="images/dossiers-triees.jpg" alt="Dossiers triés">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Témoignages -->
-    <section class="testimonials">
+    <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2 class="section-title">💬 Ils nous font confiance</h2>
+            <div class="section-header">
+                <h2>💬 Ils nous font confiance</h2>
+                <p>Découvrez ce que nos utilisateurs pensent de PhotoSort AI.</p>
+            </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p>"PhotoSort AI m’a fait gagner 10 heures de tri ! Je recommande à 100%."</p>
-                    <div class="author">— Sophie, Photographe amateur</div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"PhotoSort AI m’a fait gagner <strong>10 heures</strong> sur mon projet photo ! Les albums sont <strong>parfaitement triés</strong> et je n’ai rien eu à faire. <strong>Indispensable</strong> pour les photographes."</p>
+                    <div class="author">
+                        <img src="https://via.placeholder.com/50" alt="Sophie" class="author-img">
+                        <div>
+                            <div class="author-name">Sophie</div>
+                            <div class="author-role">Photographe amateur</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="testimonial-card">
-                    <p>"Enfin un outil qui comprend mes critères ! Les albums sont parfaits."</p>
-                    <div class="author">— Thomas, Voyageur</div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Enfin un outil qui <strong>comprend mes critères</strong> ! J’ai testé d’autres logiciels, mais aucun ne était aussi <strong>précis et personnalisable</strong> que PhotoSort AI."</p>
+                    <div class="author">
+                        <img src="https://via.placeholder.com/50" alt="Thomas" class="author-img">
+                        <div>
+                            <div class="author-name">Thomas</div>
+                            <div class="author-role">Voyageur</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="testimonial-card">
-                    <p>"Simple, rapide et efficace. Mes photos sont enfin organisées."</p>
-                    <div class="author">— Claire, Utilisatrice lambda</div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Simple, <strong>ultra-rapide</strong> et <strong>efficace</strong> : mes 5 000 photos ont été triées en <strong>moins d’une heure</strong> ! Je recommande à 100%."</p>
+                    <div class="author">
+                        <img src="https://via.placeholder.com/50" alt="Claire" class="author-img">
+                        <div>
+                            <div class="author-name">Claire</div>
+                            <div class="author-role">Utilisatrice lambda</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Tarifs -->
-    <section class="pricing">
+    <section id="pricing" class="pricing">
         <div class="container">
-            <h2 class="section-title">💰 Nos offres</h2>
+            <div class="section-header">
+                <h2>💰 Des tarifs adaptés à vos besoins</h2>
+                <p>Choisissez l’offre qui vous convient.</p>
+            </div>
             <div class="pricing-grid">
                 <div class="pricing-card">
                     <h3>Gratuit</h3>
                     <div class="price">0 €</div>
                     <ul>
-                        <li>Jusqu’à 1 000 photos/mois</li>
+                        <li>Jusqu’à <strong>1 000 photos/mois</strong></li>
                         <li>Fonctionnalités de base</li>
                         <li>Support par email</li>
                     </ul>
-                    <a href="#" class="btn">Essayer gratuitement</a>
+                    <a href="#" class="btn btn-outline">Essayer gratuitement</a>
                 </div>
-                <div class="pricing-card">
+                <div class="pricing-card premium">
+                    <div class="premium-badge">Le plus populaire</div>
                     <h3>Premium</h3>
-                    <div class="price">9,99 €/mois</div>
+                    <div class="price">9,99 €<span>/mois</span></div>
                     <ul>
-                        <li>Illimité en nombre de photos</li>
-                        <li>Support prioritaire</li>
+                        <li><strong>Illimité</strong> en nombre de photos</li>
+                        <li><strong>Support prioritaire 24/7</strong></li>
                         <li>Mises à jour automatiques</li>
-                        <li>Accès aux nouvelles fonctionnalités</li>
+                        <li>Accès aux <strong>nouvelles fonctionnalités</strong></li>
                     </ul>
-                    <a href="#" class="btn">Passer Premium</a>
+                    <a href="#" class="btn btn-primary">Passer Premium →</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Section pour l'interface de tri (à adapter) -->
-    <section id="demo" class="how-it-works">
+    <!-- Demo/Download -->
+    <section id="demo" class="demo">
         <div class="container">
-            <h2 class="section-title">🚀 Essayez PhotoSort AI maintenant</h2>
-            <div style="background-color: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center;">
-                <p style="margin-bottom: 1.5rem;">Pour utiliser PhotoSort AI, suivez ces étapes :</p>
-                <ol style="text-align: left; max-width: 600px; margin: 0 auto 2rem;">
-                    <li>Téléchargez l'outil <a href="#" style="color: var(--vert-emeraude);">ici</a>.</li>
-                    <li>Installez <a href="https://www.raidrive.com/" style="color: var(--vert-emeraude);">RaiDrive</a> ou <a href="https://www.netdrive.net/" style="color: var(--vert-emeraude);">NetDrive</a> pour connecter votre cloud.</li>
-                    <li>Lancez le script avec la commande : <code style="background-color: var(--gris-clair); padding: 0.2rem 0.5rem; border-radius: 5px;">python analyse_photos_final.py</code>.</li>
-                </ol>
-                <a href="#" class="btn">Télécharger l'outil</a>
+            <div class="section-header">
+                <h2>🚀 Essayez PhotoSort AI maintenant</h2>
+                <p>Téléchargez l’outil et commencez à trier vos photos en quelques clics.</p>
+            </div>
+            <div class="demo-content">
+                <div class="demo-text">
+                    <ol>
+                        <li>Téléchargez l'outil <a href="#" style="color: var(--vert-emeraude);">ici</a>.</li>
+                        <li>Installez <a href="https://www.raidrive.com/" target="_blank" style="color: var(--vert-emeraude);">RaiDrive</a> ou <a href="https://www.netdrive.net/" target="_blank" style="color: var(--vert-emeraude);">NetDrive</a>.</li>
+                        <li>Lancez le script avec la commande : <code>python analyse_photos_final.py</code>.</li>
+                    </ol>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1rem;">Télécharger l'outil →</a>
+                </div>
+                <div class="demo-image">
+                    <img src="images/capture-interface.png" alt="Capture de l'interface PhotoSort AI">
+                </div>
             </div>
         </div>
     </section>
@@ -464,19 +243,26 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="social-icons">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-leaf" style="color: var(--vert-emeraude); margin-right: 10px;"></i>
+                    PhotoSort AI
+                </div>
+                <div class="footer-links">
+                    <a href="#">À propos</a>
+                    <a href="#">Contact</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Mentions légales</a>
+                </div>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
-            <div class="footer-links">
-                <a href="#">À propos</a>
-                <a href="#">Contact</a>
-                <a href="#">FAQ</a>
-                <a href="#">Mentions légales</a>
-                <a href="#">Politique de confidentialité</a>
+            <div class="copyright">
+                © 2026 PhotoSort AI. Tous droits réservés.
             </div>
-            <p>© 2026 PhotoSort AI. Tous droits réservés.</p>
         </div>
     </footer>
 </body>
